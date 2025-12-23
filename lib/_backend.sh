@@ -61,14 +61,14 @@ DB_TIMEZONE=-03:00
 DB_DIALECT=postgres
 DB_HOST=localhost
 DB_USER=postgres
-DB_PASS=2000@23
+DB_PASS=${db_pass}
 DB_NAME=whaticketwhaticketplus
 DB_PORT=5432
 DB_DEBUG=false
 DB_BACKUP=/www/wwwroot/backup
 
-JWT_SECRET=53pJTvkL9T6q2jYFFKwXgvLAgQahwbb/BM0opll5NZM=
-JWT_REFRESH_SECRET=1/n/QnJtfUphUd9CrXjaxRw+jSAxtRIJwFroFmqrRXY=
+JWT_SECRET=${jwt_secret}
+JWT_REFRESH_SECRET=${jwt_refresh_secret}
 
 REDIS_URI=redis://:${db_pass}@127.0.0.1:6379
 REDIS_OPT_LIMITER_MAX=1
@@ -81,7 +81,7 @@ ENV_TOKEN=
 WHATSAPP_UNREADS=
 
 # FACEBOOK/INSTAGRAM CONFIGS
-VERIFY_TOKEN=Whaticket
+VERIFY_TOKEN=${verify_token}
 FACEBOOK_APP_ID=
 FACEBOOK_APP_SECRET=
 
