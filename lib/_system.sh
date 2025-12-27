@@ -86,8 +86,12 @@ system_node_install() {
   sleep 2
   sudo timedatectl set-timezone America/Sao_Paulo
   sleep 2
-  sudo -u postgres psql -c "ALTER USER postgres PASSWORD '2000@23';"
-  sudo -u postgres psql -c "CREATE DATABASE whaticketwhaticketplus;"
+  if [ "$db_user" = "postgres" ]; then
+    sudo -u postgres psql -c "ALTER USER postgres PASSWORD '${db_pass}';"
+  else
+    sudo -u postgres psql -c "DO \$\$ BEGIN IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = '${db_user}') THEN CREATE USER ${db_user} WITH PASSWORD '${db_pass}'; END IF; END \$\$;"
+  fi
+  sudo -u postgres psql -c "CREATE DATABASE ${db_name} OWNER ${db_user};" 2>/dev/null || true
   exit
 EOF
 
